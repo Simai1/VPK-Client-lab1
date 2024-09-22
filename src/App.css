@@ -1,38 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #555;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+p {
+  font-size: 18px;
+  color: #666;
+}
+
+div {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+}
+
+select,
+input {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+select:hover,
+input:hover {
+  border-color: #007bff;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+button {
+  background-color: #007bff;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover {
+  background-color: #0056b3;
 }
