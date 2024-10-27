@@ -1,43 +1,24 @@
-import React, {useState} from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import FlightClassSelect from "./FlightClassSelect";
 import PassengerCountSelect from "./PassengerCountSelect";
 import DestinationSelect from "./DestinationSelect";
-
-const basePrices = {
-    Эконом: 100,
-    Комфорт: 150,
-    Бизнес: 300,
-    "Первый класс": 600,
-};
-
-const destinationPrices = {
-    "Нью-Йорк": 200,
-    Лондон: 400,
-    Токио: 500,
-    Париж: 350,
-};
-
-const calculatePrice = (flightClass, destination, passengers) => {
-    const classPrice = basePrices[flightClass];
-    const destinationPrice = destinationPrices[destination];
-    return (classPrice + destinationPrice) * passengers;
-};
+import { setFlightClass, setPassengers, setDestination } from "../store/flightSlice";
 
 const FlightBooking = () => {
-    const [flightClass, setFlightClass] = useState("Эконом");
-    const [passengers, setPassengers] = useState(1);
-    const [destination, setDestination] = useState("Нью-Йорк");
+    const { flightClass, passengers, destination, price } = useSelector((state) => state.flight);
+    const dispatch = useDispatch();
 
     const handleFlightClassChange = (selectedClass) => {
-        setFlightClass(selectedClass);
+        dispatch(setFlightClass(selectedClass));
     };
 
     const handlePassengerCountChange = (count) => {
-        setPassengers(count);
+        dispatch(setPassengers(count));
     };
 
     const handleDestinationChange = (selectedDestination) => {
-        setDestination(selectedDestination);
+        dispatch(setDestination(selectedDestination));
     };
 
     return (
@@ -60,7 +41,7 @@ const FlightBooking = () => {
             <p>Класс: {flightClass}</p>
             <p>Пассажиры: {passengers}</p>
             <p>Пункт назначения: {destination}</p>
-            <h3>Цена: ${calculatePrice(flightClass, destination, passengers)}</h3>
+            <h3>Цена: ${price}</h3>
             <button>Купить</button>
         </div>
     );
