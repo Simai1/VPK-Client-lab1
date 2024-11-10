@@ -1,69 +1,35 @@
-import React, {useState} from "react";
+import React from "react";
 import FlightClassSelect from "./FlightClassSelect";
 import PassengerCountSelect from "./PassengerCountSelect";
 import DestinationSelect from "./DestinationSelect";
-
-const basePrices = {
-    Эконом: 100,
-    Комфорт: 150,
-    Бизнес: 300,
-    "Первый класс": 600,
-};
-
-const destinationPrices = {
-    "Нью-Йорк": 200,
-    Лондон: 400,
-    Токио: 500,
-    Париж: 350,
-};
-
-const calculatePrice = (flightClass, destination, passengers) => {
-    const classPrice = basePrices[flightClass];
-    const destinationPrice = destinationPrices[destination];
-    return (classPrice + destinationPrice) * passengers;
-};
+import flightStore from "../store/store";
+import {observer} from "mobx-react"; // Импортируем store
 
 const FlightBooking = () => {
-    const [flightClass, setFlightClass] = useState("Эконом");
-    const [passengers, setPassengers] = useState(1);
-    const [destination, setDestination] = useState("Нью-Йорк");
-
-    const handleFlightClassChange = (selectedClass) => {
-        setFlightClass(selectedClass);
-    };
-
-    const handlePassengerCountChange = (count) => {
-        setPassengers(count);
-    };
-
-    const handleDestinationChange = (selectedDestination) => {
-        setDestination(selectedDestination);
-    };
-
     return (
         <div>
             <h1>Бронирование авиабилетов</h1>
             <FlightClassSelect
-                selectedClass={flightClass}
-                onFlightClassChange={handleFlightClassChange}
+                selectedClass={flightStore.flightClass}
+                onFlightClassChange={flightStore.setFlightClass.bind(flightStore)}
             />
             <PassengerCountSelect
-                passengers={passengers}
-                onPassengerCountChange={handlePassengerCountChange}
+                passengers={flightStore.passengers}
+                onPassengerCountChange={flightStore.setPassengers.bind(flightStore)}
             />
             <DestinationSelect
-                selectedDestination={destination}
-                onDestinationChange={handleDestinationChange}
+                selectedDestination={flightStore.destination}
+                onDestinationChange={flightStore.setDestination.bind(flightStore)}
             />
 
             <h2>Ваш билет:</h2>
-            <p>Класс: {flightClass}</p>
-            <p>Пассажиры: {passengers}</p>
-            <p>Пункт назначения: {destination}</p>
-            <h3>Цена: ${calculatePrice(flightClass, destination, passengers)}</h3>
+            <p>Класс: {flightStore.flightClass}</p>
+            <p>Пассажиры: {flightStore.passengers}</p>
+            <p>Пункт назначения: {flightStore.destination}</p>
+            <h3>Цена: ${flightStore.calculatePrice()}</h3>
             <button>Купить</button>
         </div>
     );
 };
 
-export default FlightBooking;
+export default observer(FlightBooking);

@@ -9,8 +9,7 @@ const PassengerCountSelect = ({ passengers, onPassengerCountChange }) => {
                 value={passengers}
                 min="1"
                 max="10"
-                defaultValue="1"
-                onChange={(e) => onPassengerCountChange(e.target.value? Number(e.target.value): "")}
+                onChange={(e) => onPassengerCountChange(Number(e.target.value))}
             />
         </div>
     );
