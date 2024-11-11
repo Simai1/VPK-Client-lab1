@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const GenreQuestion = ({ question, onAnswer }) => {
     const [selectedAnswers, setSelectedAnswers] = useState([]);
+
+    // Очистка selectedAnswers при изменении вопроса
+    useEffect(() => {
+        setSelectedAnswers([]);
+    }, [question]);
 
     const toggleAnswer = (answer) => {
         if (selectedAnswers.includes(answer)) {

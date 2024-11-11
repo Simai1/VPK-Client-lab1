@@ -12,6 +12,7 @@ const Game = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         axios.get(`${apiUrl}/questions`)
             .then(response => setQuestions(response.data))
@@ -20,6 +21,7 @@ const Game = () => {
 
     const handleGenreAnswer = (selectedGenres) => {
         const correctGenre = questions[currentQuestionIndex].genre;
+
         const isCorrect = selectedGenres.every(answer => answer.genre === correctGenre);
 
         if (isCorrect) {
@@ -51,6 +53,7 @@ const Game = () => {
     const goToNextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
+
         } else {
             navigate("/result");
         }
