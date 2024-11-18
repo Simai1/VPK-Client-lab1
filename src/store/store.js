@@ -6,7 +6,7 @@ class FlightStore {
     destination = "Нью-Йорк";
 
     constructor() {
-        makeAutoObservable(this); // Преобразуем объект в реактивный
+        makeAutoObservable(this);
     }
 
     setFlightClass(flightClass) {

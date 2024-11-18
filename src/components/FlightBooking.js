@@ -3,7 +3,7 @@ import FlightClassSelect from "./FlightClassSelect";
 import PassengerCountSelect from "./PassengerCountSelect";
 import DestinationSelect from "./DestinationSelect";
 import flightStore from "../store/store";
-import {observer} from "mobx-react"; // Импортируем store
+import {observer} from "mobx-react";
 
 const FlightBooking = () => {
     return (
