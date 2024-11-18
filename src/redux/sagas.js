@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, all, takeEvery } from 'redux-saga/effects';
 import { fetchTasksSuccess, fetchTasksFailure } from './actions';
 
 function fetchTasksApi() {
@@ -16,6 +16,10 @@ function* fetchTasks() {
     }
 }
 
+function* watchFetchTasks() {
+    yield takeEvery('FETCH_TASKS_REQUEST', fetchTasks);
+}
+
 export default function* rootSaga() {
-    yield takeLatest('FETCH_TASKS_REQUEST', fetchTasks);
+    yield all([watchFetchTasks()]);
 }
