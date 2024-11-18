@@ -17,6 +17,13 @@ export default function taskReducer(state = initialState, action) {
                 ...state,
                 tasks: [...state.tasks, { id: Date.now(), title: action.payload.title }],
             };
+        case 'TOGGLE_TASK':
+            return {
+                ...state,
+                tasks: state.tasks.map((task) =>
+                    task.id === action.payload ? { ...task, completed: !task.completed } : task
+                ),
+            };
         default:
             return state;
     }

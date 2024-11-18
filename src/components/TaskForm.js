@@ -7,7 +7,7 @@ const TaskForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({ type: 'ADD_TASK', payload: { title } }); // Пример действия для создания задачи
+        dispatch({ type: 'ADD_TASK', payload: { title } });
         setTitle('');
     };
 

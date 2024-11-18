@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchTasksSuccess, fetchTasksFailure } from './actions';
 
 function fetchTasksApi() {
-    return fetch('https://jsonplaceholder.typicode.com/todos?_limit=5').then((response) =>
+        return fetch('https://jsonplaceholder.typicode.com/todos?_limit=10').then((response) =>
         response.json()
     );
 }
